@@ -7,7 +7,7 @@ const exphbs = require('express-handlebars');
 const hbs = exphbs.create({ helpers });
 const session = require('express-session');
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.SV_PORT || 10000;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sess = {
     secret: 'Super secret secret',
@@ -18,6 +18,7 @@ const sess = {
         db: sequelize
     })
 };
+const http = require('http').Server(app);
 app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(routes);
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening'));
-});
+try { sequelize.sync(); console.log('Connected to PostgreSQL database!'); 
+    http.listen(PORT, () => console.log (`Server Listening on Port ${PORT}`)); } 
+    catch (err) 
+    { console.error('Error connecting to the database:', err); }
+  
