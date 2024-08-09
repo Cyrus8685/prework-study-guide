@@ -5,5 +5,5 @@ const withAuth = (req, res, next) => {
         next();
     }
 };
-
+console.log("auth-js")
 module.exports = withAuth;

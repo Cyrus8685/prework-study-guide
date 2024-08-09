@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express();
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 router.get('/', withAuth, (req, res) => {
@@ -77,6 +78,6 @@ router.get('/new', (req, res) => {
     res.render('new-post');
 });
 
-
+console.log("dashboard-routes")
 
 module.exports = router;

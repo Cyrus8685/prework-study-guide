@@ -1,6 +1,7 @@
-const sequelize = require('../config/connection');
+const express = require('express');
+const router = express();
 const { Post, User, Comment } = require('../models');
-const router = require('express').Router();
+
 router.get('/', (req, res) => {
     Post.findAll({
             attributes: [
@@ -125,5 +126,5 @@ router.get('/posts-comments', (req, res) => {
             res.status(500).json(err);
         });
 });
-
+console.log("home-routes")
 module.exports = router;

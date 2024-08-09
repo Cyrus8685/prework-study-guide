@@ -1,6 +1,6 @@
-const router = require('express').Router();
-const { Post, User, Comment } = require('../../models');
-const sequelize = require('../../config/connection');
+const express = require('express');
+const router = express();
+const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -121,5 +121,5 @@ router.delete('/:id', withAuth, (req, res) => {
         res.status(500).json(err);
     });
 });
-
+console.log("post-routes")
 module.exports = router;

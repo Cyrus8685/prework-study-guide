@@ -18,5 +18,5 @@ const commentData = [{
 ];
 
 const seedComments = () => Comment.bulkCreate(commentData);
-
+console.log("comment-seeds")
 module.exports = seedComments;
