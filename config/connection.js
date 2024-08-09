@@ -4,7 +4,7 @@ require('dotenv').config()
 const sequelize = new Sequelize({
   database: "cyrus",
   host: "localhost",
-  port: 10000,
+  port: 5432,
   dialect: "postgres",
 });
     module.exports = sequelize
